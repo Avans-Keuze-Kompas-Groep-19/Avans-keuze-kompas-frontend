@@ -16,7 +16,7 @@ export default function Sidebar(props: SidebarProps) {
     const buttonText = props.buttonText ?? "Sluiten";
 
     return (
-        <section className="sidebar absolute left-0 bottom-0">
+        <section className="sidebar">
             <div className="sidebar bg-sidebar rounded w-[288px] h-full p-5">
                 <h2>{heading}</h2>
                 <p>{description}</p>

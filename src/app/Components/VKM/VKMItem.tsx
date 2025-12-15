@@ -3,6 +3,7 @@
 
 import { useItems } from '../../lib/useItem';
 import {ItemCard} from './ItemCard';
+import Sidebar from "@/app/Components/layout/popupables/Sidebar/Sidebar";
 
 export default function ItemsView() {
     const { items, loading } = useItems();
@@ -11,6 +12,9 @@ export default function ItemsView() {
 
     return (
         <div className="container">
+            <div className="col">
+                <Sidebar />
+            </div>
             <h2 className="text-3xl mb-2 font-bold">Alle keuze modules:</h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 gap-4">
 
