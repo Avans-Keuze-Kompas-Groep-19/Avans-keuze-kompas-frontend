@@ -1,7 +1,9 @@
 // app/page.tsx
-import HeroSection from "./Components/layout/header/Hero/Hero";
+import HeroSection from "@/app/Components/layout/Hero/Hero";
 import ItemsView from "./Components/VKM/VKMItem";
 import { Header } from "@/app/Components/layout/header/Header";
+import SidebarFilters from "@/app/Components/layout/popupables/Sidebar/Sidebar";
+import Sidebar from "@/app/Components/layout/popupables/Sidebar/Sidebar";
 
 export default function Home() {
   return (
@@ -16,6 +18,7 @@ export default function Home() {
           background="#c6002a"
         />
         <ItemsView />
+          <Sidebar />
       </main>
     </>
   );
