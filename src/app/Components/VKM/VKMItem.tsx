@@ -15,12 +15,14 @@ export default function ItemsView() {
             <div className="col">
                 <Sidebar />
             </div>
-            <h2 className="text-3xl mb-2 font-bold">Alle keuze modules:</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 gap-4">
+            <div className="col">
+                <h2 className="text-3xl mb-2 font-bold">Alle keuze modules:</h2>
+                <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 gap-4">
 
-                {items.map((item, index) => (
-                    <ItemCard key={item._id} item={item} index={index} />
-                ))}
+                    {items.map((item, index) => (
+                        <ItemCard key={item._id} item={item} index={index} />
+                    ))}
+                </div>
             </div>
         </div>
     );
