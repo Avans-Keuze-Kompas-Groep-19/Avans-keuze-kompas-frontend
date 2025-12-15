@@ -16,7 +16,7 @@ export default function Sidebar(props: SidebarProps) {
     const buttonText = props.buttonText ?? "Sluiten";
 
     return (
-        <section className="sidebar sticky left">
+        <section className="sidebar absolute left-0 bottom-0">
             <div className="sidebar">
                 <h2>{heading}</h2>
             </div>
