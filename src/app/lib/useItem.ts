@@ -1,15 +1,31 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { getApiClient } from '@/app/lib/apiClient'; // pas pad aan
+import { getApiClient } from './apiClient';
 import type { VKM } from '@/app/types/VKM';
-import type { VkmFilters} from "@/app/Components/VKM/VKMItem"; // pas pad aan
 
-export function useItems(filters?: VkmFilters) {
+/**
+ * Filters supported by the backend:
+ * GET /vkm/filter?studyCredit=...&location=...&level=...
+ */
+export type VkmFilters = {
+    studyCredit?: number;
+    location?: string;
+    level?: string;
+};
+
+/**
+ * Backward-compatible alias for older components importing { Item } from this file.
+ */
+export type Item = VKM;
+
+export function useItems(filters: VkmFilters = {}) {
     const [items, setItems] = useState<VKM[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
 
-    const key = useMemo(() => JSON.stringify(filters ?? {}), [filters]);
+    // Stable dependency for useEffect when filters change
+    const key = useMemo(() => JSON.stringify(filters), [filters]);
 
     useEffect(() => {
         let cancelled = false;
@@ -17,15 +33,19 @@ export function useItems(filters?: VkmFilters) {
 
         (async () => {
             setLoading(true);
+            setError(null);
+
+            // Critical: clear previous results so you don't keep rendering "all items"
+            setItems([]);
+
             try {
-                const hasFilters =
-                    !!filters?.studyCredit || !!filters?.location || !!filters?.level;
-
-                const data = hasFilters
-                    ? await api.getVKMItemsFiltered(filters!)
-                    : await api.getVKMItems();
-
+                const data = await api.getVKMItemsFiltered(filters);
                 if (!cancelled) setItems(data);
+            } catch (e: any) {
+                if (!cancelled) {
+                    setError(e?.message ?? 'Failed to load items');
+                    setItems([]);
+                }
             } finally {
                 if (!cancelled) setLoading(false);
             }
@@ -36,5 +56,5 @@ export function useItems(filters?: VkmFilters) {
         };
     }, [key]);
 
-    return { items, loading };
+    return { items, loading, error };
 }

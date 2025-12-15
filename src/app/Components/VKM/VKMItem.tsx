@@ -1,23 +1,16 @@
-// components/ItemsView.tsx
 'use client';
 
-import { useMemo, useState } from 'react';
-import { useItems } from '../../lib/useItem';
+import { useState } from 'react';
+import { useItems, type VkmFilters } from '../../lib/useItem';
 import { ItemCard } from './ItemCard';
 import Sidebar from "@/app/Components/layout/popupables/Sidebar/Sidebar";
 
-export type VkmFilters = {
-    studyCredit?: number;
-    location?: string;
-    level?: string;
-};
-
 export default function ItemsView() {
     const [filters, setFilters] = useState<VkmFilters>({});
-
-    const { items, loading } = useItems(filters);
+    const { items, loading, error } = useItems(filters);
 
     if (loading) return <p>Loading...</p>;
+    if (error) return <p className="text-red-500">{error}</p>;
 
     return (
         <div className="container flex gap-5">

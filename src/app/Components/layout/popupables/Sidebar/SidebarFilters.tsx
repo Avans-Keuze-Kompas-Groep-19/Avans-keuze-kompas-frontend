@@ -1,38 +1,43 @@
 "use client";
 
 import { Checkbox } from "@/components/ui/checkbox";
-import type {VkmFilters} from "@/app/Components/VKM/VKMItem";
+import type { VkmFilters } from "@/app/lib/useItem";
 
 type Props = {
     value: VkmFilters;
     onChange: (next: VkmFilters) => void;
 };
 
-// Voorbeeldopties: vervang door jouw echte waarden (of laad dynamisch)
+// Replace these with your real options (or load them dynamically later)
 const STUDY_CREDITS = [5, 10, 15, 30];
 const LOCATIONS = ["Den Bosch", "Breda", "Tilburg"];
 const LEVELS = ["NLQF6", "NLQF7"];
 
+function nextWith<T extends keyof VkmFilters>(
+    value: VkmFilters,
+    key: T,
+    nextVal: VkmFilters[T],
+): VkmFilters {
+    return { ...value, [key]: nextVal };
+}
+
 export default function SidebarFilters({ value, onChange }: Props) {
     const toggleStudyCredit = (credit: number) => {
-        onChange({
-            ...value,
-            studyCredit: value.studyCredit === credit ? undefined : credit,
-        });
+        onChange(
+            nextWith(value, "studyCredit", value.studyCredit === credit ? undefined : credit),
+        );
     };
 
     const toggleLocation = (loc: string) => {
-        onChange({
-            ...value,
-            location: value.location === loc ? undefined : loc,
-        });
+        onChange(
+            nextWith(value, "location", value.location === loc ? undefined : loc),
+        );
     };
 
     const toggleLevel = (lvl: string) => {
-        onChange({
-            ...value,
-            level: value.level === lvl ? undefined : lvl,
-        });
+        onChange(
+            nextWith(value, "level", value.level === lvl ? undefined : lvl),
+        );
     };
 
     const clearAll = () => onChange({});

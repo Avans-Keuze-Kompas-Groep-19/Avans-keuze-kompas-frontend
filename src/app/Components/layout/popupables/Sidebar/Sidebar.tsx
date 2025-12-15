@@ -1,7 +1,7 @@
 'use client';
 
 import SidebarFilters from "@/app/Components/layout/popupables/Sidebar/SidebarFilters";
-import type { VkmFilters } from "@/app/Components/VKM/VKMItem";// pas path aan als nodig
+import type { VkmFilters } from "@/app/lib/useItem";
 
 type SidebarProps = {
     heading?: string;
