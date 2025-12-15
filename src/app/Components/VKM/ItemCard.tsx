@@ -11,7 +11,7 @@ export const ItemCard = ({ item, index }: Props) => {
   return (
     <div
       className="rounded shadow overflow-hidden"
-      style={{ width: "400px", height: "350px" }}
+      style={{ width: "250px", height: "350px" }}
     >
       {/* Image section - top half */}
       <div style={{ height: "175px", overflow: "hidden" }}>
