@@ -18,7 +18,6 @@ export default function Home() {
           background="#c6002a"
         />
         <ItemsView />
-          <Sidebar />
       </main>
     </>
   );
