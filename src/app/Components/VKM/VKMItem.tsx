@@ -11,7 +11,7 @@ export default function ItemsView() {
     if (loading) return <p>Loading...</p>;
 
     return (
-        <div className="container flex">
+        <div className="container flex gap-2">
             <div className="col">
                 <Sidebar />
             </div>
