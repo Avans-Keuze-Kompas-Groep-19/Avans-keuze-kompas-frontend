@@ -1,7 +1,8 @@
 "use Client";
-import { Item } from "../../lib/useItem";
+import type { VKM } from "@/app/types/VKM";
+
 type Props = {
-  item: Item;
+  item: VKM;
   index: number;
 };
 
