@@ -17,10 +17,11 @@ export default function Sidebar(props: SidebarProps) {
 
     return (
         <section className="sidebar absolute left-0 bottom-0">
-            <div className="sidebar bg-sidebar rounded w-[288px] h-full">
+            <div className="sidebar bg-sidebar rounded w-[288px] h-full p-5">
                 <h2>{heading}</h2>
+                <p>{description}</p>
+                <SidebarFilters filters={filters} />
             </div>
-            <SidebarFilters filters={filters} />
         </section>
 
     )
