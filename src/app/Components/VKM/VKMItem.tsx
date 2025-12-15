@@ -1,24 +1,38 @@
 // components/ItemsView.tsx
 'use client';
 
+import { useMemo, useState } from 'react';
 import { useItems } from '../../lib/useItem';
-import {ItemCard} from './ItemCard';
+import { ItemCard } from './ItemCard';
 import Sidebar from "@/app/Components/layout/popupables/Sidebar/Sidebar";
 
+export type VkmFilters = {
+    studyCredit?: number;
+    location?: string;
+    level?: string;
+};
+
 export default function ItemsView() {
-    const { items, loading } = useItems();
+    const [filters, setFilters] = useState<VkmFilters>({});
+
+    const { items, loading } = useItems(filters);
 
     if (loading) return <p>Loading...</p>;
 
     return (
         <div className="container flex gap-5">
             <div className="col">
-                <Sidebar />
+                <Sidebar
+                    heading="Filters"
+                    description="Kies hier je filters"
+                    value={filters}
+                    onChange={setFilters}
+                />
             </div>
+
             <div className="col">
                 <h2 className="text-3xl mb-2 font-bold">Alle keuze modules:</h2>
                 <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
-
                     {items.map((item, index) => (
                         <ItemCard key={item._id} item={item} index={index} />
                     ))}
