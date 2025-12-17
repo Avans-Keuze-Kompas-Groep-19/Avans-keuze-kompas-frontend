@@ -45,7 +45,7 @@ export default function ModalForm() {
 
     return (
         <>
-            <h2 className="text-2xl">Benieuwd welk keuzedeel bij jou past?</h2>
+            <h2 className="text-4xl mb-2">Benieuwd welk keuzedeel bij jou past?</h2>
             <button
                 type="button"
                 onClick={() => setOpen(true)}
