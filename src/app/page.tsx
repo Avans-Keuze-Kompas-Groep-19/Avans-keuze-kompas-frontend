@@ -18,6 +18,7 @@ export default function Home() {
           imageAlt="Hero image"
           background="#c6002a"
         />
+          <div className="m-5"></div>
           <ModalForm />
           <div className="m-5"></div>
         <ItemsView />
