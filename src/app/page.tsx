@@ -19,6 +19,7 @@ export default function Home() {
           background="#c6002a"
         />
           <ModalForm />
+          <div className="m-5"></div>
         <ItemsView />
       </main>
     </>
