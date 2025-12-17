@@ -58,7 +58,9 @@ export default function ModalForm() {
 
             <dialog
                 ref={dialogRef}
-                className="w-[min(92vw,520px)] rounded-xl p-0 shadow-xl backdrop:bg-black/50"
+                className="w-[min(92vw,520px)] rounded-xl p-0 shadow-xl fixed inset-0 m-0
+    flex items-center justify-center
+    backdrop:bg-black/50 "
                 onClick={(e) => {
                     // Only close when clicking the backdrop area (the dialog itself),
                     // not when clicking inside the modal card.
