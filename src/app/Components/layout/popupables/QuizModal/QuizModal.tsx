@@ -50,7 +50,7 @@ export default function ModalForm() {
                 onClick={() => setOpen(true)}
                 className="rounded-md bg-black px-4 py-2 text-white hover:opacity-90"
             >
-                Open modal
+                Start de Quiz
             </button>
 
             {open && (
