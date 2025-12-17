@@ -56,7 +56,12 @@ export default function ModalForm() {
             {open && (
                 <dialog
                     ref={dialogRef}
-                    className="fixed inset-0 m-0 p-0 backdrop:bg-black/50"
+                    className="            fixed top-0 left-1/2
+            -translate-x-1/2
+            m-0 p-0
+            bg-transparent
+            backdrop:bg-black/50
+"
                     onClose={() => setOpen(false)}
                     onClick={(e) => {
                         // Click on backdrop closes (only if click hits the dialog itself)
