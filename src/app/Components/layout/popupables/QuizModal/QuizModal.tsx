@@ -17,12 +17,11 @@ export default function ModalForm() {
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const formData = new FormData(e.currentTarget);
-
+        const fd = new FormData(e.currentTarget);
         const payload: Payload = {
-            name: String(formData.get('name') ?? ''),
-            email: String(formData.get('email') ?? ''),
-            message: String(formData.get('message') ?? ''),
+            name: String(fd.get('name') ?? ''),
+            email: String(fd.get('email') ?? ''),
+            message: String(fd.get('message') ?? ''),
         };
 
         console.log('Submitted:', payload);
@@ -43,19 +42,19 @@ export default function ModalForm() {
 
             <dialog
                 ref={dialogRef}
+                // IMPORTANT: hidden by default; only flex when open
                 className="
+          hidden [open]:flex
           fixed inset-0 m-0
-          flex items-center justify-center
+          items-center justify-center
           backdrop:bg-black/50
         "
                 onClick={(e) => {
-                    // Close only when clicking backdrop
+                    // Close only when clicking the backdrop area
                     if (e.target === e.currentTarget) closeModal();
                 }}
             >
-                {/* Modal Card */}
                 <div className="w-[min(92vw,520px)] rounded-xl bg-white shadow-xl">
-                    {/* Header */}
                     <div className="flex items-center justify-between border-b px-5 py-4">
                         <h2 className="text-lg font-semibold">Contact</h2>
                         <button
@@ -68,7 +67,6 @@ export default function ModalForm() {
                         </button>
                     </div>
 
-                    {/* Form */}
                     <form onSubmit={onSubmit} className="space-y-4 px-5 py-4">
                         <div className="space-y-1">
                             <label htmlFor="name" className="text-sm font-medium">
