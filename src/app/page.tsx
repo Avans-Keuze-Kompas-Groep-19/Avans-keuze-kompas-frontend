@@ -4,6 +4,7 @@ import ItemsView from "./Components/VKM/VKMItem";
 import { Header } from "@/app/Components/layout/header/Header";
 import SidebarFilters from "@/app/Components/layout/popupables/Sidebar/Sidebar";
 import Sidebar from "@/app/Components/layout/popupables/Sidebar/Sidebar";
+import ModalForm from "@/app/Components/layout/popupables/QuizModal/QuizModal";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
           imageAlt="Hero image"
           background="#c6002a"
         />
+          <ModalForm />
         <ItemsView />
       </main>
     </>
