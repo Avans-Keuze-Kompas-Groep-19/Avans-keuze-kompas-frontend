@@ -45,12 +45,13 @@ export default function ModalForm() {
 
     return (
         <>
+            <h2>Benieuwd welk keuzedeel bij jou past?</h2>
             <button
                 type="button"
                 onClick={() => setOpen(true)}
                 className="rounded-md bg-black px-4 py-2 text-white hover:opacity-90 mb-3"
             >
-                Start de Quiz
+                Doe de Quiz
             </button>
 
             {open && (
