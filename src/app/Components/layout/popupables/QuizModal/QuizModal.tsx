@@ -59,8 +59,12 @@ export default function ModalForm() {
             <dialog
                 ref={dialogRef}
                 className="w-[min(92vw,520px)] rounded-xl p-0 shadow-xl backdrop:bg-black/50"
+                onClick={(e) => {
+                    // Only close when clicking the backdrop area (the dialog itself),
+                    // not when clicking inside the modal card.
+                    if (e.target === e.currentTarget) closeModal();
+                }}
             >
-                {/* Card */}
                 <div className="rounded-xl bg-white">
                     <div className="flex items-center justify-between border-b px-5 py-4">
                         <h2 className="text-lg font-semibold">Contact</h2>
@@ -77,43 +81,34 @@ export default function ModalForm() {
 
                     <form onSubmit={onSubmit} className="space-y-4 px-5 py-4">
                         <div className="space-y-1">
-                            <label htmlFor="name" className="text-sm font-medium">
-                                Name
-                            </label>
+                            <label htmlFor="name" className="text-sm font-medium">Name</label>
                             <input
                                 id="name"
                                 name="name"
                                 required
                                 className="w-full rounded-md border px-3 py-2 outline-none focus:ring-2 focus:ring-black/20"
-                                placeholder="Jane Doe"
                             />
                         </div>
 
                         <div className="space-y-1">
-                            <label htmlFor="email" className="text-sm font-medium">
-                                Email
-                            </label>
+                            <label htmlFor="email" className="text-sm font-medium">Email</label>
                             <input
                                 id="email"
                                 name="email"
                                 type="email"
                                 required
                                 className="w-full rounded-md border px-3 py-2 outline-none focus:ring-2 focus:ring-black/20"
-                                placeholder="jane@example.com"
                             />
                         </div>
 
                         <div className="space-y-1">
-                            <label htmlFor="message" className="text-sm font-medium">
-                                Message
-                            </label>
+                            <label htmlFor="message" className="text-sm font-medium">Message</label>
                             <textarea
                                 id="message"
                                 name="message"
                                 required
                                 rows={4}
                                 className="w-full resize-none rounded-md border px-3 py-2 outline-none focus:ring-2 focus:ring-black/20"
-                                placeholder="What can we help with?"
                             />
                         </div>
 
@@ -134,14 +129,6 @@ export default function ModalForm() {
                         </div>
                     </form>
                 </div>
-
-                {/* Click-outside to close (backdrop) */}
-                <form method="dialog">
-                    <button
-                        aria-label="Close on backdrop click"
-                        className="fixed inset-0 cursor-default"
-                    />
-                </form>
             </dialog>
         </div>
     );
