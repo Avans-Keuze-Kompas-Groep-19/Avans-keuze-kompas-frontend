@@ -48,7 +48,7 @@ export default function ModalForm() {
             <button
                 type="button"
                 onClick={() => setOpen(true)}
-                className="rounded-md bg-black px-4 py-2 text-white hover:opacity-90"
+                className="rounded-md bg-black px-4 py-2 text-white hover:opacity-90 mb-3"
             >
                 Start de Quiz
             </button>
