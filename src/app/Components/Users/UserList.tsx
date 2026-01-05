@@ -73,15 +73,15 @@ const UserList = () => {
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {users.map((user) => (
-          <div key={user._id} className="border p-4 rounded-lg shadow">
+          <div key={user._id} className="p-4 rounded-lg shadow">
             <h2 className="text-xl font-semibold">{`${user.profile.first_name} ${user.profile.last_name}`}</h2>
             <p className="text-gray-600">{user.email}</p>
             <p className="text-gray-600">{user.group}</p>
             <p className="text-gray-600">
-              Is dit een student? {user.is_student ? "Ja" : "Nee"}
+              {user.is_student ? "Student" : "Avans Medewerker"}
             </p>
             <p className="text-gray-600">
-              Adminrechten? {user.is_admin ? "Ja" : "Nee"}
+              {user.is_admin ? "Admin Gebruiker" : "Gebruiker"}
             </p>
             <div className="mt-4">
               <button
