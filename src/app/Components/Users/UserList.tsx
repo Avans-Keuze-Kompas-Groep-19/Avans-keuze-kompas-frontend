@@ -107,7 +107,7 @@ const UserList = () => {
             </p>
             <p className="mt-4"> Type Gebruiker:</p>
             <p className="text-gray-600">
-              {user.is_admin ? "Admin rechtem" : "Gebruiker"} -{" "}
+              {user.is_admin ? "Admin rechten" : "Gebruiker"} -{" "}
               {user.is_student ? "Student" : "Medewerker"}
             </p>
             <div className="mt-4 flex gap-2">
