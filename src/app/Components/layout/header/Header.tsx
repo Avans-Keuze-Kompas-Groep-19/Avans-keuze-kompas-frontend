@@ -37,8 +37,8 @@ export const Header = () => {
             <h1 className="font-sans font-black text-4xl">KeuzeKompas</h1>
           </div>
         </div>
-        <div className="bg-[#c6002a] w-full h-[60px] shadow p-6 max-w-4xl mx-auto">
-          <div className="flex gap-2 items-center w-full h-full px-20">
+        <div className="bg-[#c6002a] w-full h-[60px] shadow ">
+          <div className="flex gap-2 items-center w-full h-full px-20 p-6 max-w-4xl mx-auto">
             {user?.is_admin && (
               <Link
                 href="/vkm"
