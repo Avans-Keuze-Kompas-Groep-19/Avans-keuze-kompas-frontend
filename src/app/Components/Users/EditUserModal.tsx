@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import type { User, Profile, PartialUserWithPartialProfile } from '@/app/types/User';
+import { Checkbox } from "@/components/ui/checkbox"
 
 interface EditUserModalProps {
     user: User | null;
@@ -38,6 +39,14 @@ const EditUserModal: React.FC<EditUserModalProps> = ({ user, onClose, onUpdate }
                 [field]: value,
             }));
         }
+    };
+
+    const handleCheckboxChange = (name: 'is_admin' | 'is_student', value: boolean | 'indeterminate') => {
+        if (value === 'indeterminate') return;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value,
+        }));
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -99,6 +108,26 @@ const EditUserModal: React.FC<EditUserModalProps> = ({ user, onClose, onUpdate }
                             onChange={handleChange}
                             className="w-full px-3 py-2 border rounded"
                         />
+                    </div>
+                    <div className="mb-4 flex flex-col gap-4">
+                        <div className="flex items-center space-x-2">
+                            <Checkbox id="is_admin" checked={formData.is_admin} onCheckedChange={(checked) => handleCheckboxChange('is_admin', checked)} />
+                            <label
+                                htmlFor="is_admin"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                Is Admin
+                            </label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <Checkbox id="is_student" checked={formData.is_student} onCheckedChange={(checked) => handleCheckboxChange('is_student', checked)} />
+                            <label
+                                htmlFor="is_student"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                Is Student
+                            </label>
+                        </div>
                     </div>
                     <div className="flex justify-end gap-4">
                         <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-300 rounded">Cancel</button>
