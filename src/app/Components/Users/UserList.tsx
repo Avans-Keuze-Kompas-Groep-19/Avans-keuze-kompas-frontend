@@ -78,9 +78,11 @@ const UserList = () => {
             <p className="text-gray-600">{user.email}</p>
             <p className="text-gray-600">{user.group}</p>
             <p className="text-gray-600">
-              Is dit een student? {user.is_student}
+              Is dit een student? {user.is_student ? "Ja" : "Nee"}
             </p>
-            <p className="text-gray-600">Adminrechten? {user.is_admin}</p>
+            <p className="text-gray-600">
+              Adminrechten? {user.is_admin ? "Ja" : "Nee"}
+            </p>
             <div className="mt-4">
               <button
                 onClick={() => handleEditClick(user)}
