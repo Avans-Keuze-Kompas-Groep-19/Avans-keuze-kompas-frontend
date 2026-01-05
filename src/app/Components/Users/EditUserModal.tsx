@@ -22,14 +22,14 @@ const EditUserModal: React.FC<EditUserModalProps> = ({ user, onClose, onUpdate }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        if (name.includes('.')) {
-            const [parent, child] = name.split('.');
+        if (name.startsWith('profile.')) {
+            const field = name.split('.')[1];
             setFormData(prev => ({
                 ...prev,
-                [parent]: {
-                    ...prev[parent as keyof typeof prev],
-                    [child]: value
-                }
+                profile: {
+                    ...(prev.profile || {}),
+                    [field]: value,
+                },
             }));
         } else {
             setFormData(prev => ({ ...prev, [name]: value }));
