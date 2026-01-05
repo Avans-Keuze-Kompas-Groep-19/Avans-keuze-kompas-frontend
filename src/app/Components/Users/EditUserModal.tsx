@@ -1,16 +1,18 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import type { User } from '@/app/types/User';
+import type { User, Profile } from '@/app/types/User';
+
+type FormData = Omit<Partial<User>, 'profile'> & { profile?: Partial<Profile> };
 
 interface EditUserModalProps {
     user: User | null;
     onClose: () => void;
-    onUpdate: (updatedUser: User) => void;
+    onUpdate: (updatedUser: Partial<User>) => void;
 }
 
 const EditUserModal: React.FC<EditUserModalProps> = ({ user, onClose, onUpdate }) => {
-    const [formData, setFormData] = useState<Partial<User>>(user || {});
+    const [formData, setFormData] = useState<FormData>(user || {});
 
     useEffect(() => {
         setFormData(user || {});
@@ -23,7 +25,7 @@ const EditUserModal: React.FC<EditUserModalProps> = ({ user, onClose, onUpdate }
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         if (name.startsWith('profile.')) {
-            const field = name.split('.')[1];
+            const field = name.split('.')[1] as keyof Profile;
             setFormData(prev => ({
                 ...prev,
                 profile: {
@@ -32,13 +34,17 @@ const EditUserModal: React.FC<EditUserModalProps> = ({ user, onClose, onUpdate }
                 },
             }));
         } else {
-            setFormData(prev => ({ ...prev, [name]: value }));
+            const field = name as keyof Omit<User, 'profile'>;
+            setFormData(prev => ({
+                ...prev,
+                [field]: value,
+            }));
         }
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        onUpdate(formData as User);
+        onUpdate(formData);
     };
 
     return (

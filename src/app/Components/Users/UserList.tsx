@@ -40,24 +40,19 @@ const UserList = () => {
     setSelectedUser(null);
   };
 
-  const handleUpdateUser = async (updatedUser: User) => {
-    if (!selectedUser) return;
+    const handleUpdateUser = async (updatedUser: Partial<User>) => {
+        if (!selectedUser) return;
 
-    try {
-      const apiClient = getApiClient();
-      const savedUser = await apiClient.updateUser(
-        selectedUser._id,
-        updatedUser
-      );
-      setUsers(
-        users.map((user) => (user._id === savedUser._id ? savedUser : user))
-      );
-      handleCloseModal();
-    } catch (err) {
-      const apiError = err as ApiError;
-      setError(apiError.message);
-    }
-  };
+        try {
+            const apiClient = getApiClient();
+            const savedUser = await apiClient.updateUser(selectedUser._id, updatedUser);
+            setUsers(users.map(user => user._id === savedUser._id ? savedUser : user));
+            handleCloseModal();
+        } catch (err) {
+            const apiError = err as ApiError;
+            setError(apiError.message);
+        }
+    };
 
   if (loading) {
     return <div>Loading...</div>;
