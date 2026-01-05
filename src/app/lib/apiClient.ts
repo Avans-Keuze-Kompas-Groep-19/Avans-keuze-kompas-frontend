@@ -7,6 +7,7 @@
 import { getConfig } from "./config";
 import type { VKM, VKMInput } from "@/app/types/VKM";
 import type { User, PartialUserWithPartialProfile } from "@/app/types/User";
+import type { Question } from "@/app/types/Quiz";
 
 // Types for better type safety
 export interface ApiError {
@@ -212,6 +213,14 @@ class ApiClient {
 
     async deleteUser(id: string): Promise<void> {
         return this.delete<void>(`/users/${id}`);
+    }
+
+    // ===========================================
+    // Quiz-specific API methods
+    // ===========================================
+
+    async getQuestions(): Promise<Question[]> {
+        return this.get<Question[]>("/questions");
     }
 
     /**
