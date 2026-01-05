@@ -7,7 +7,7 @@ const UsersPage = () => {
   return (
     <>
       <Header />
-      <main className="flex flex-col justify-center items-center m-10">
+      <main className="flex flex-col justify-center m-10">
         <HeroSection
           heading="Bewerk hier alle gebruikers!"
           description=""
