@@ -9,8 +9,8 @@ export const Header = () => {
   return (
     <>
       <header className="flex justify-center items-center flex-col bg-white mb-5 sticky top-0 z-50 ">
-        <div className="container flex justify-between items-center py-5">
-          <div className="flex gap-2 items-center">
+        <div className="container flex justify-between items-center py-5 p-6 max-w-4xl mx-auto">
+          <div className="flex gap-2 items-center ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               version="1.1"
