@@ -46,12 +46,20 @@ export const Header = () => {
               Home
             </Link>
             {user?.is_admin && (
-              <Link
-                href="/vkm"
-                className="text-white font-semibold hover:text-[#a00021] transition"
-              >
-                Admin
-              </Link>
+              <>
+                <Link
+                  href="/vkm"
+                  className="text-white font-semibold hover:text-[#a00021] transition"
+                >
+                  Keuzemodules
+                </Link>
+                <Link
+                  href="/users"
+                  className="text-white font-semibold hover:text-[#a00021] transition"
+                >
+                  Gebruikers
+                </Link>
+              </>
             )}
 
             {isLoggedIn ? (
