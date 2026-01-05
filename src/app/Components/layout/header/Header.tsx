@@ -39,6 +39,12 @@ export const Header = () => {
         </div>
         <div className="bg-[#c6002a] w-full h-[60px] shadow ">
           <div className="flex gap-2 items-center w-full h-full px-20 p-6 max-w-4xl mx-auto">
+            <Link
+              href="/"
+              className="text-white font-semibold hover:text-[#a00021] transition"
+            >
+              Home
+            </Link>
             {user?.is_admin && (
               <Link
                 href="/vkm"
