@@ -6,6 +6,7 @@
 
 import { getConfig } from "./config";
 import type { VKM, VKMInput } from "@/app/types/VKM";
+import type { User } from "@/app/types/User";
 
 // Types for better type safety
 export interface ApiError {
@@ -191,6 +192,14 @@ class ApiClient {
 
     async deleteVKMItem(id: string): Promise<void> {
         return this.delete<void>(`/vkm/${id}`);
+    }
+
+    // ===========================================
+    // User-specific API methods
+    // ===========================================
+
+    async getUsers(): Promise<User[]> {
+        return this.get<User[]>("/users");
     }
 
     /**
