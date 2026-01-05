@@ -114,53 +114,7 @@ const UsersPage = () => {
                             <button onClick={() => setIsCreateModalOpen(true)} className="px-4 py-2 bg-green-500 text-white rounded">Create User</button>
                         </div>
                         {loading && <div>Loading...</div>}
-                        {error && <div className="text-red-500">Error: Failed to edit, 0 occurrences found for old_string ("use client";
-
-import React from 'react';
-import UserList from "@/app/Components/Users/UserList";
-import { useAuth } from "@/app/lib/auth/useAuth";
-import LoginForm from "@/app/Components/Auth/loginForm";
-import { Header } from "@/app/Components/layout/header/Header";
-
-const UsersPage = () => {
-    const { isLoggedIn } = useAuth();
-
-    return (
-        <>
-            <Header />
-            <main className="p-6 max-w-4xl mx-auto">
-                <h1 className="text-3xl font-bold mb-6">Users Dashboard</h1>
-                {isLoggedIn ? <UserList /> : <LoginForm />}
-            </main>
-        </>
-    );
-};
-
-export default UsersPage;
-). Original old_string was ("use client";
-
-import React from 'react';
-import UserList from "@/app/Components/Users/UserList";
-import { useAuth } from "@/app/lib/auth/useAuth";
-import LoginForm from "@/app/Components/Auth/loginForm";
-import { Header } from "@/app/Components/layout/header/Header";
-
-const UsersPage = () => {
-    const { isLoggedIn } = useAuth();
-
-    return (
-        <>
-            <Header />
-            <main className="p-6 max-w-4xl mx-auto">
-                <h1 className="text-3xl font-bold mb-6">Users Dashboard</h1>
-                {isLoggedIn ? <UserList /> : <LoginForm />}
-            </main>
-        </>
-    );
-};
-
-export default UsersPage;
-) in /Users/jarivankaam/Documents/sites/Avans/Avans-keuze-kompas-mvp/Avans-keuze-kompas-frontend/src/app/users/page.tsx. No edits made. The exact text in old_string was not found. Ensure you're not escaping content incorrectly and check whitespace, indentation, and context. Use read_file tool to verify.</div>}
+                        {error && <div className="text-red-500">Error: {error}</div>}
                         {!loading && !error && <UserList users={users} onEdit={handleEditClick} onDelete={handleDeleteClick} />}
                     </>
                 ) : (
