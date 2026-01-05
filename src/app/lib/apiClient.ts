@@ -202,6 +202,10 @@ class ApiClient {
         return this.get<User[]>("/users");
     }
 
+    async updateUser(id: string, data: Partial<User>): Promise<User> {
+        return this.put<User>(`/users/${id}`, data);
+    }
+
     /**
      * Get VKM items filtered by studyCredit, location, and/or level
      * Calls backend route: GET /vkm/filter?studyCredit=30&location=Den%20Bosch&level=NLQF6
