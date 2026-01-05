@@ -1,18 +1,16 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import type { User, Profile } from '@/app/types/User';
-
-type FormData = Omit<Partial<User>, 'profile'> & { profile?: Partial<Profile> };
+import type { User, Profile, PartialUserWithPartialProfile } from '@/app/types/User';
 
 interface EditUserModalProps {
     user: User | null;
     onClose: () => void;
-    onUpdate: (updatedUser: Partial<User>) => void;
+    onUpdate: (updatedUser: PartialUserWithPartialProfile) => void;
 }
 
 const EditUserModal: React.FC<EditUserModalProps> = ({ user, onClose, onUpdate }) => {
-    const [formData, setFormData] = useState<FormData>(user || {});
+    const [formData, setFormData] = useState<PartialUserWithPartialProfile>(user || {});
 
     useEffect(() => {
         setFormData(user || {});

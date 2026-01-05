@@ -6,7 +6,7 @@
 
 import { getConfig } from "./config";
 import type { VKM, VKMInput } from "@/app/types/VKM";
-import type { User } from "@/app/types/User";
+import type { User, PartialUserWithPartialProfile } from "@/app/types/User";
 
 // Types for better type safety
 export interface ApiError {
@@ -202,7 +202,7 @@ class ApiClient {
         return this.get<User[]>("/users");
     }
 
-    async updateUser(id: string, data: Partial<User>): Promise<User> {
+    async updateUser(id: string, data: PartialUserWithPartialProfile): Promise<User> {
         return this.put<User>(`/users/${id}`, data);
     }
 
