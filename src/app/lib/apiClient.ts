@@ -206,6 +206,10 @@ class ApiClient {
         return this.put<User>(`/users/${id}`, data);
     }
 
+    async deleteUser(id: string): Promise<void> {
+        return this.delete<void>(`/users/${id}`);
+    }
+
     /**
      * Get VKM items filtered by studyCredit, location, and/or level
      * Calls backend route: GET /vkm/filter?studyCredit=30&location=Den%20Bosch&level=NLQF6
