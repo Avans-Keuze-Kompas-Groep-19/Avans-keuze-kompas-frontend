@@ -106,6 +106,7 @@ const UserList = () => {
               {user.email} - {user.group}
             </p>
             <p className="text-gray-600">
+              Type Gebruiker:
               {user.is_admin ? "Admin rechtem" : "Gebruiker"} -{" "}
               {user.is_student ? "Student" : "Medewerker"}
             </p>
