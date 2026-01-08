@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { getApiClient } from '@/app/lib/apiClient';
 import type { Question, Answer } from '@/app/types/Quiz';
 import type { ApiError } from '@/app/lib/apiClient';
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function QuizModal() {
     const [isOpen, setIsOpen] = useState(false);
@@ -87,13 +88,23 @@ export default function QuizModal() {
                 <h3 className="text-lg font-semibold mb-4">{currentQuestion.question}</h3>
                 <div className="space-y-2">
                     {Array.isArray(currentQuestion.answers) && currentQuestion.answers.map(answer => (
-                        <button
+                        <div
                             key={answer.answerId}
                             onClick={() => handleAnswerSelect(currentQuestion._id, answer.answerId)}
-                            className={`w-full text-left p-3 border rounded-md ${selectedAnswers[currentQuestion._id] === answer.answerId ? 'bg-blue-100 border-blue-500' : 'hover:bg-gray-100'}`}
+                            className={`flex items-center space-x-2 p-3 border rounded-md cursor-pointer ${selectedAnswers[currentQuestion._id] === answer.answerId ? 'bg-blue-100 border-blue-500' : 'hover:bg-gray-100'}`}
                         >
-                            {answer.text}
-                        </button>
+                            <Checkbox
+                                id={`q${currentQuestion._id}-a${answer.answerId}`}
+                                checked={selectedAnswers[currentQuestion._id] === answer.answerId}
+                                onCheckedChange={() => handleAnswerSelect(currentQuestion._id, answer.answerId)}
+                            />
+                            <label
+                                htmlFor={`q${currentQuestion._id}-a${answer.answerId}`}
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                            >
+                                {answer.text}
+                            </label>
+                        </div>
                     ))}
                 </div>
             </div>
