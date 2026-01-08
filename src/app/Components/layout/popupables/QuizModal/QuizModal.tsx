@@ -86,7 +86,7 @@ export default function QuizModal() {
             <div>
                 <h3 className="text-lg font-semibold mb-4">{currentQuestion.question}</h3>
                 <div className="space-y-2">
-                    {currentQuestion.answers.map(answer => (
+                    {Array.isArray(currentQuestion.answers) && currentQuestion.answers.map(answer => (
                         <button
                             key={answer.answerId}
                             onClick={() => handleAnswerSelect(currentQuestion._id, answer.answerId)}
