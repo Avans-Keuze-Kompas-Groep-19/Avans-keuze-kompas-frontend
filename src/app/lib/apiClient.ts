@@ -220,7 +220,7 @@ class ApiClient {
     // ===========================================
 
     async getQuestions(): Promise<Question[]> {
-        return this.get<Question[]>("/questions");
+        return this.get<Question[]>("/questions", { requiresAuth: false });
     }
 
     /**
