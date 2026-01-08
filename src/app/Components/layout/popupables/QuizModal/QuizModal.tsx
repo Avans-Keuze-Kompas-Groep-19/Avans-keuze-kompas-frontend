@@ -36,8 +36,15 @@ export default function QuizModal() {
         setError(null);
         try {
             const apiClient = getApiClient();
-            const fetchedQuestions = await apiClient.getQuestions();
-            setQuestions(fetchedQuestions);
+            const fetchedData: any[] = await apiClient.getQuestions();
+
+            const transformedQuestions: Question[] = fetchedData.map((q, index) => ({
+                _id: q._id || index,
+                question: q.question,
+                answers: q.quiz_answers,
+            }));
+
+            setQuestions(transformedQuestions);
         } catch (err) {
             const apiError = err as ApiError;
             setError(apiError.message);
