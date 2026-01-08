@@ -75,7 +75,7 @@ export default function QuizModal() {
     };
 
     const handleQuizSubmit = async () => {
-        const quizAnswers = {};
+        const quizAnswers: { [key: string]: string } = {};
         Object.keys(selectedAnswers).forEach(qId => {
             const questionId = parseInt(qId, 10);
             const answerId = selectedAnswers[questionId];
