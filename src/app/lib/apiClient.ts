@@ -87,7 +87,9 @@ class ApiClient {
         endpoint: string,
         options: RequestOptions = {},
     ): Promise<T> {
-        const url = this.config.getApiUrl(endpoint);
+        const isAbsoluteUrl = endpoint.startsWith('http://') || endpoint.startsWith('https://');
+        const url = isAbsoluteUrl ? endpoint : this.config.getApiUrl(endpoint);
+
         const requiresAuth = options.requiresAuth !== false;
 
         const fetchOptions: RequestInit = {
@@ -250,6 +252,15 @@ class ApiClient {
         // Als je backend deze route met JwtAuthGuard beschermt, laat dit zo.
         // Als je hem publiek wilt maken: { requiresAuth: false }
         return this.get<VKM[]>(endpoint);
+    }
+
+    // ===========================================
+    // AI-specific API methods
+    // ===========================================
+
+    async getRecommendations(data: any): Promise<any> {
+        const recommendUrl = 'https://ai-api.panel.evonix-development.tech/recommend';
+        return this.post<any>(recommendUrl, data, { requiresAuth: false });
     }
 }
 

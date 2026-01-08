@@ -70,7 +70,44 @@ export default function QuizModal() {
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(prev => prev + 1);
         } else {
+            handleQuizSubmit();
+        }
+    };
+
+    const handleQuizSubmit = async () => {
+        const quizAnswers = {};
+        Object.keys(selectedAnswers).forEach(qId => {
+            const questionId = parseInt(qId, 10);
+            const answerId = selectedAnswers[questionId];
+            const question = questions.find(q => q._id === questionId);
+            const answer = question?.answers.find(a => a.answerId === answerId);
+
+            if (question && answer) {
+                const key = question.question.toLowerCase().replace(/\s+/g, '_').replace(/[?]/g, '');
+                quizAnswers[key] = answer.text;
+            }
+        });
+
+        const requestBody = {
+            interests_text: "I like backend development with Python and API design",
+            preferred_location: "Amsterdam",
+            max_difficulty: 3,
+            role_include: ["backend", "api"],
+            quiz_answers: quizAnswers,
+            k: 5
+        };
+
+        try {
+            setLoading(true);
+            const apiClient = getApiClient();
+            const recommendations = await apiClient.getRecommendations(requestBody);
+            console.log("Recommendations:", recommendations);
             setQuizCompleted(true);
+        } catch (err) {
+            const apiError = err as ApiError;
+            setError(apiError.message || "Failed to get recommendations.");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -83,8 +120,7 @@ export default function QuizModal() {
             return (
                 <div>
                     <h3 className="text-xl font-semibold mb-4">Quiz Completed!</h3>
-                    <p>Thank you for completing the quiz.</p>
-                    {/* Here you could show a summary of answers */}
+                    <p>Thank you for completing the quiz. The recommendations have been logged to the console.</p>
                 </div>
             );
         }
