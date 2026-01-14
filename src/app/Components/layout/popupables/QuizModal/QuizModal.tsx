@@ -16,6 +16,7 @@ export default function QuizModal() {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
     const [quizCompleted, setQuizCompleted] = useState(false);
+    const [recommendations, setRecommendations] = useState<any>(null);
 
     useEffect(() => {
         const dialog = dialogRef.current;
@@ -60,6 +61,7 @@ export default function QuizModal() {
         setSelectedAnswers({});
         setQuizCompleted(false);
         setQuestions([]);
+        setRecommendations(null);
     };
 
     const handleAnswerSelect = (questionId: number, answerId: number) => {
@@ -101,7 +103,7 @@ export default function QuizModal() {
             setLoading(true);
             const apiClient = getApiClient();
             const recommendations = await apiClient.getRecommendations(requestBody);
-            console.log("Recommendations:", recommendations);
+            setRecommendations(recommendations);
             setQuizCompleted(true);
         } catch (err) {
             const apiError = err as ApiError;
@@ -120,7 +122,16 @@ export default function QuizModal() {
             return (
                 <div>
                     <h3 className="text-xl font-semibold mb-4">Quiz Completed!</h3>
-                    <p>Thank you for completing the quiz. The recommendations have been logged to the console.</p>
+                    {recommendations ? (
+                        <div>
+                            <h4 className="text-lg font-semibold">Recommendations:</h4>
+                            <pre className="bg-gray-100 p-4 rounded-md overflow-x-auto">
+                                {JSON.stringify(recommendations, null, 2)}
+                            </pre>
+                        </div>
+                    ) : (
+                        <p>Thank you for completing the quiz.</p>
+                    )}
                 </div>
             );
         }
