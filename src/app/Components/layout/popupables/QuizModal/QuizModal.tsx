@@ -105,6 +105,7 @@ export default function QuizModal() {
             setLoading(true);
             const apiClient = getApiClient();
             const recommendations = await apiClient.getRecommendations(requestBody);
+            console.log('AI Recommendations:', JSON.stringify(recommendations, null, 2));
             setRecommendations(recommendations);
 
             if (user && recommendations?.vkm_recommendations) {
