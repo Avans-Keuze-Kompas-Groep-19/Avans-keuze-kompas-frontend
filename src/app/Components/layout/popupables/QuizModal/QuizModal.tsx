@@ -5,8 +5,10 @@ import { getApiClient } from '@/app/lib/apiClient';
 import type { Question, Answer } from '@/app/types/Quiz';
 import type { ApiError } from '@/app/lib/apiClient';
 import { Checkbox } from "@/components/ui/checkbox";
+import { useAuth } from "@/app/lib/auth/useAuth";
 
 export default function QuizModal() {
+    const { user } = useAuth();
     const [isOpen, setIsOpen] = useState(false);
     const dialogRef = useRef<HTMLDialogElement | null>(null);
 
@@ -104,6 +106,11 @@ export default function QuizModal() {
             const apiClient = getApiClient();
             const recommendations = await apiClient.getRecommendations(requestBody);
             setRecommendations(recommendations);
+
+            if (user) {
+                await apiClient.updateUserRecommendations(user.sub, recommendations);
+            }
+
             setQuizCompleted(true);
         } catch (err) {
             const apiError = err as ApiError;

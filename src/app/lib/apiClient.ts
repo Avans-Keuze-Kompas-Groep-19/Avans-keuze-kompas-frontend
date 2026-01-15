@@ -217,6 +217,10 @@ class ApiClient {
         return this.delete<void>(`/users/${id}`);
     }
 
+    async updateUserRecommendations(userId: string, recommendations: any): Promise<User> {
+        return this.patch<User>(`/users/${userId}/recommendations`, { recommendations });
+    }
+
     // ===========================================
     // Quiz-specific API methods
     // ===========================================
