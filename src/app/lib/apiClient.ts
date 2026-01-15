@@ -209,6 +209,10 @@ class ApiClient {
         return this.get<User[]>("/users");
     }
 
+    async getUser(id: string): Promise<User> {
+        return this.get<User>(`/users/${id}`);
+    }
+
     async createUser(data: PartialUserWithPartialProfile): Promise<User> {
         return this.post<User>("/users", data);
     }

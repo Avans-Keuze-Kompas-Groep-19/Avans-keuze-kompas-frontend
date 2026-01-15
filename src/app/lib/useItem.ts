@@ -40,9 +40,12 @@ export function useItems(filters: VkmFilters = {}, recommendation = false) {
 
       try {
         if (recommendation) {
-          if (user && user.recommended_vkms && user.recommended_vkms.length > 0) {
-            const data = await api.getVKMItemsByIds(user.recommended_vkms);
-            if (!cancelled) setItems(data);
+          if (user) {
+            const fullUser = await api.getUser(user.sub);
+            if (fullUser && fullUser.recommended_vkms && fullUser.recommended_vkms.length > 0) {
+              const data = await api.getVKMItemsByIds(fullUser.recommended_vkms);
+              if (!cancelled) setItems(data);
+            }
           }
         } else {
           const data = await api.getVKMItemsFiltered(filters);
