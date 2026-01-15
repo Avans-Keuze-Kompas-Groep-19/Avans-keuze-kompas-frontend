@@ -198,12 +198,7 @@ class ApiClient {
     }
 
     async getVKMItemsByIds(ids: string[]): Promise<VKM[]> {
-        const uniqueIds = [...new Set(ids)];
-        if (uniqueIds.length === 0) {
-            return Promise.resolve([]);
-        }
-        const query = `?ids=${uniqueIds.join(',')}`;
-        return this.get<VKM[]>(`/vkm/batch${query}`);
+        return this.post<VKM[]>("/vkm/batch", { ids });
     }
 
     // ===========================================

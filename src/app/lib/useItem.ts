@@ -43,7 +43,8 @@ export function useItems(filters: VkmFilters = {}, recommendation = false) {
           if (user) {
             const fullUser = await api.getUser(user.sub);
             if (fullUser && fullUser.recommended_vkms && fullUser.recommended_vkms.length > 0) {
-              const data = await api.getVKMItemsByIds(fullUser.recommended_vkms.slice(0, 3));
+              const uniqueIds = [...new Set(fullUser.recommended_vkms)];
+              const data = await api.getVKMItemsByIds(uniqueIds.slice(0, 3));
               if (!cancelled) setItems(data);
             }
           }
