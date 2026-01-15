@@ -218,7 +218,7 @@ class ApiClient {
     }
 
     async updateUserRecommendedVKMs(userId: string, vkmIds: string[]): Promise<User> {
-        return this.put<User>(`/users/${userId}/recommended-vkms`, vkmIds);
+        return this.put<User>(`/users/${userId}/recommended-vkms`, { recommendations: vkmIds });
     }
 
     // ===========================================
