@@ -5,8 +5,9 @@ import { Header } from "@/app/Components/layout/header/Header";
 import SidebarFilters from "@/app/Components/layout/popupables/Sidebar/Sidebar";
 import Sidebar from "@/app/Components/layout/popupables/Sidebar/Sidebar";
 import ModalForm from "@/app/Components/layout/popupables/QuizModal/QuizModal";
-
+import { useAuth } from "./lib/auth/useAuth";
 export default function Home() {
+  const isLoggedIn = useAuth();
   return (
     <>
       <Header />
@@ -18,9 +19,10 @@ export default function Home() {
           imageAlt="Hero image"
           background="#c6002a"
         />
-          <div className="m-5"></div>
-          <ModalForm />
-          <div className="m-5"></div>
+        <div className="m-5"></div>
+        {isLoggedIn ? <ItemsView recommendation={true} /> : <ModalForm />}
+        <div className="m-5"></div>
+        <div className="m-5"></div>
         <ItemsView />
       </main>
     </>

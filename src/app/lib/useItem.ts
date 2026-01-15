@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { getApiClient } from "./apiClient";
 import type { VKM } from "@/app/types/VKM";
+import { useAuth } from "@/app/lib/auth/useAuth";
 
 /**
  * Filters supported by the backend:
@@ -19,10 +20,11 @@ export type VkmFilters = {
  */
 export type Item = VKM;
 
-export function useItems(filters: VkmFilters = {}) {
+export function useItems(filters: VkmFilters = {}, recommendation = false) {
   const [items, setItems] = useState<VKM[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const { user } = useAuth();
 
   // Stable dependency for useEffect when filters change
   const key = useMemo(() => JSON.stringify(filters), [filters]);
@@ -34,13 +36,18 @@ export function useItems(filters: VkmFilters = {}) {
     (async () => {
       setLoading(true);
       setError(null);
-
-      // Critical: clear previous results so you don't keep rendering "all items"
       setItems([]);
 
       try {
-        const data = await api.getVKMItemsFiltered(filters);
-        if (!cancelled) setItems(data);
+        if (recommendation) {
+          if (user && user.recommended_vkms && user.recommended_vkms.length > 0) {
+            const data = await api.getVKMItemsByIds(user.recommended_vkms);
+            if (!cancelled) setItems(data);
+          }
+        } else {
+          const data = await api.getVKMItemsFiltered(filters);
+          if (!cancelled) setItems(data);
+        }
       } catch (e: any) {
         if (!cancelled) {
           setError(e?.message ?? "Failed to load items");
@@ -54,7 +61,7 @@ export function useItems(filters: VkmFilters = {}) {
     return () => {
       cancelled = true;
     };
-  }, [key]);
+  }, [key, recommendation, user]);
 
   return { items, loading, error };
 }

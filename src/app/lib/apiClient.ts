@@ -197,6 +197,10 @@ class ApiClient {
         return this.delete<void>(`/vkm/${id}`);
     }
 
+    async getVKMItemsByIds(ids: string[]): Promise<VKM[]> {
+        return this.post<VKM[]>("/vkm/batch", { ids });
+    }
+
     // ===========================================
     // User-specific API methods
     // ===========================================
