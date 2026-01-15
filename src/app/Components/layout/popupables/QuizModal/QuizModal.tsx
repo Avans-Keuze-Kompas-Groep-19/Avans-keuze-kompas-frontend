@@ -105,11 +105,10 @@ export default function QuizModal() {
             setLoading(true);
             const apiClient = getApiClient();
             const recommendations = await apiClient.getRecommendations(requestBody);
-            console.log('AI Recommendations:', JSON.stringify(recommendations, null, 2));
             setRecommendations(recommendations);
 
-            if (user && recommendations?.vkm_recommendations) {
-                const recommendedIds = recommendations.vkm_recommendations.map((rec: any) => rec._id);
+            if (user && recommendations?.recommendations) {
+                const recommendedIds = recommendations.recommendations.map((rec: any) => String(rec.item_id));
                 await apiClient.updateUserRecommendedVKMs(user.sub, recommendedIds);
             }
 

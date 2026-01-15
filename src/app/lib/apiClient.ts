@@ -217,8 +217,8 @@ class ApiClient {
         return this.delete<void>(`/users/${id}`);
     }
 
-    async updateUserRecommendedVKMs(userId: string, recommendations: string[]): Promise<User> {
-        return this.patch<User>(`/users/${userId}/recommended-vkms`, { recommendations });
+    async updateUserRecommendedVKMs(userId: string, vkmIds: string[]): Promise<User> {
+        return this.patch<User>(`/users/${userId}/recommended-vkms`, { vkmIds });
     }
 
     // ===========================================
