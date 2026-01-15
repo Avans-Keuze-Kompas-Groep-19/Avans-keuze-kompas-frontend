@@ -1,4 +1,5 @@
 // app/page.tsx
+'use client'
 import HeroSection from "@/app/Components/layout/Hero/Hero";
 import ItemsView from "./Components/VKM/VKMItem";
 import { Header } from "@/app/Components/layout/header/Header";
