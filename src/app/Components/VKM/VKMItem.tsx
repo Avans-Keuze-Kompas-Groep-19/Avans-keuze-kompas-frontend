@@ -30,7 +30,7 @@ export default function ItemsView({ recommendation = false }: { recommendation?:
                     {recommendation ? "Aanbevolen keuze modules:" : "Alle keuze modules:"}
                 </h2>
                 <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4">
-                    {items.map((item, index) => (
+                    {(recommendation ? items.slice(0, 3) : items).map((item, index) => (
                         <ItemCard key={item._id} item={item} index={index} />
                     ))}
                 </div>
