@@ -130,16 +130,7 @@ export default function QuizModal() {
             return (
                 <div>
                     <h3 className="text-xl font-semibold mb-4">Quiz Completed!</h3>
-                    {recommendations ? (
-                        <div>
-                            <h4 className="text-lg font-semibold">Recommendations:</h4>
-                            <pre className="bg-gray-100 p-4 rounded-md overflow-x-auto">
-                                {JSON.stringify(recommendations, null, 2)}
-                            </pre>
-                        </div>
-                    ) : (
-                        <p>Thank you for completing the quiz.</p>
-                    )}
+                    <p>Thank you for completing the quiz.</p>
                 </div>
             );
         }
