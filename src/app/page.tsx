@@ -14,11 +14,11 @@ export default function Home() {
   const [fullUser, setFullUser] = useState<User | null>(null);
 
   useEffect(() => {
-    if (user) {
+    if (isLoggedIn && user) {
       const api = getApiClient();
       api.getUser(user.sub).then(setFullUser);
     }
-  }, [user]);
+  }, [isLoggedIn, user]);
 
   const hasRecommendations = fullUser && fullUser.recommended_vkms && fullUser.recommended_vkms.length > 0;
 
