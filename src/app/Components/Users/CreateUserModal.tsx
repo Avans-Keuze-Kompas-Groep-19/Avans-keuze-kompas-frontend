@@ -11,7 +11,10 @@ interface CreateUserModalProps {
 }
 
 const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose, onCreate }) => {
-    const [formData, setFormData] = useState<PartialUserWithPartialProfile>({});
+    const [formData, setFormData] = useState<PartialUserWithPartialProfile>({
+        is_admin: false,
+        is_student: false,
+    });
 
     if (!isOpen) {
         return null;
@@ -48,7 +51,10 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose, onCr
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         onCreate(formData);
-        setFormData({}); // Reset form
+        setFormData({
+            is_admin: false,
+            is_student: false,
+        }); // Reset form
     };
 
     return (
