@@ -73,7 +73,7 @@ export default function ItemsView({
               </div>
               {isSidebarOpen && (
                 <div
-                  className="w-[50px] h-[50px] absolute right-[10px] top-[150px]"
+                  className="w-[25px] h-[25px] absolute right-[10px] top-[175px]"
                   onClick={() => setSidebarOpen(false)}
                 >
                   <svg
