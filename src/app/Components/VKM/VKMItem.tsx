@@ -50,7 +50,7 @@ export default function ItemsView({
         {!recommendation && (
           <>
             <div
-              className={`fixed top-0 left-0 h-full bg-white z-20 w-full transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} flex align-center transition-transform duration-300 ease-in-out md:relative md:translate-x-0 md:w-1/4`}
+              className={`fixed top-0 left-0 h-full bg-white z-20 w-full transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} flex item-center transition-transform duration-300 ease-in-out md:relative md:translate-x-0 md:w-1/4`}
             >
               <Sidebar
                 heading="Filters"
