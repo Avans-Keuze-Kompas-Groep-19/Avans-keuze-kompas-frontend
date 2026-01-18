@@ -16,7 +16,7 @@ export default function Sidebar(props: SidebarProps) {
 
   return (
     <section className="sidebar">
-      <div className="sidebar bg-sidebar rounded sm:w-full w-[288px] h-full p-5">
+      <div className="sidebar bg-sidebar rounded sm:w-full lg:w-[288px] h-full p-5">
         <h2>{heading}</h2>
         <p>{description}</p>
 
