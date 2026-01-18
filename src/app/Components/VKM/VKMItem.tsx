@@ -30,19 +30,22 @@ export default function ItemsView({ recommendation = false }: { recommendation?:
 
             <div className="flex gap-5">
                 {!recommendation && (
-                    <div className={`fixed top-0 left-0 h-full bg-white z-20 w-64 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out md:relative md:translate-x-0 md:w-1/4`}>
-                        <Sidebar
-                            heading="Filters"
-                            description="Kies hier je filters"
-                            value={filters}
-                            onChange={setFilters}
-                        />
-                        <button onClick={() => setSidebarOpen(false)} className="absolute top-0 right-0 p-4 md:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
+                    <>
+                        <div className={`fixed top-0 left-0 h-full bg-white z-20 w-full transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out md:relative md:translate-x-0 md:w-1/4`}>
+                            <Sidebar
+                                heading="Filters"
+                                description="Kies hier je filters"
+                                value={filters}
+                                onChange={setFilters}
+                            />
+                            <button onClick={() => setSidebarOpen(false)} className="absolute top-0 right-0 p-4 md:hidden">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        {isSidebarOpen && <div className="fixed top-0 left-0 h-full w-full bg-black opacity-50 z-10" onClick={() => setSidebarOpen(false)}></div>}
+                    </>
                 )}
 
                 <div className="w-full">
