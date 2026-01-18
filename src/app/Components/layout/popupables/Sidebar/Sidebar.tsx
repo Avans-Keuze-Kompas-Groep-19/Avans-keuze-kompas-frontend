@@ -15,8 +15,8 @@ export default function Sidebar(props: SidebarProps) {
   const description = props.description ?? "Kies hier je filters";
 
   return (
-    <section className="sidebar">
-      <div className="sidebar bg-sidebar rounded sm:w-full lg:w-[288px] h-full p-5">
+    <section className="sidebar sm-w-full">
+      <div className="sidebar md:bg-sidebar rounded sm:w-full lg:w-[288px] h-full p-5">
         <h2>{heading}</h2>
         <p>{description}</p>
 
